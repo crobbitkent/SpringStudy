@@ -1,0 +1,2 @@
+springStudy/core/CoreApplication.java
+ springStudy.core.CoreApplication
