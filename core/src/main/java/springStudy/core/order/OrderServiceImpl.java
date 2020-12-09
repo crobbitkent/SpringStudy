@@ -1,9 +1,12 @@
 package springStudy.core.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import springStudy.core.discount.DiscountPolicy;
 import springStudy.core.member.Member;
 import springStudy.core.member.MemberRepository;
 
+@Component
 public class OrderServiceImpl implements OrderService
 {
 
@@ -14,6 +17,7 @@ public class OrderServiceImpl implements OrderService
 	private final MemberRepository memberRepository;
 	private final DiscountPolicy discountPolicy;
 	
+	@Autowired
 	public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy)
 	{
 		this.memberRepository = memberRepository;
@@ -27,5 +31,11 @@ public class OrderServiceImpl implements OrderService
 		int discountPrice = discountPolicy.discount(member, itemPrice);
 		
 		return new Order(memberId, itemName, itemPrice, discountPrice);
+	}
+	
+	// test
+	public MemberRepository getMemberRepository()
+	{
+		return memberRepository;
 	}
 }
