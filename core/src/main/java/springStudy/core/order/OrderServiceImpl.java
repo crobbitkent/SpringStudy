@@ -1,7 +1,9 @@
 package springStudy.core.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import springStudy.core.annotation.MainDiscountPolicy;
 import springStudy.core.discount.DiscountPolicy;
 import springStudy.core.member.Member;
 import springStudy.core.member.MemberRepository;
@@ -15,10 +17,10 @@ public class OrderServiceImpl implements OrderService
 	// private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 	
 	private final MemberRepository memberRepository;
-	private final DiscountPolicy discountPolicy;
+	private final DiscountPolicy discountPolicy; // autowired 필드명으로 중복 조회를 피한다.
 	
 	@Autowired
-	public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy)
+	public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy)
 	{
 		this.memberRepository = memberRepository;
 		this.discountPolicy = discountPolicy;
